@@ -27,6 +27,4 @@ public abstract class LevelChunkMixin {
             original.call(instance, level, blockPos, blockState, blockEntity);
         }
     }
-
-
 }

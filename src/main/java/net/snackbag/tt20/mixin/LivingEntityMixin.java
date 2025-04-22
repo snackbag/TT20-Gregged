@@ -18,8 +18,11 @@ public abstract class LivingEntityMixin {
     @Inject(method = "baseTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;tickEffects()V"))
     private void fixPotionDelayTick(CallbackInfo ci) {
         if (!TT20.config.enabled() || !TT20.config.potionEffectAcceleration()) return;
-        if (((Entity)(Object)this).level().isClientSide()) return;
-
+        //? if >=1.20.1 {
+        /*if (((Entity) (Object) this).level().isClientSide()) return;*/
+        //?} else {
+        if (((Entity) (Object) this).getLevel().isClientSide()) return;
+        //?}
         for (int i = 0; i < TT20.TPS_CALCULATOR.applicableMissedTicks(); i++) {
             tickEffects();
         }

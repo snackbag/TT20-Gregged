@@ -14,7 +14,11 @@ public class BlockMixin {
     @ModifyReturnValue(method = "getDestroyProgress", at = @At("RETURN"))
     private float onDestroyProgress(float original, @Local Player player) {
         if (!TT20.config.enabled() || !TT20.config.blockBreakingAcceleration()) return original;
-        if (player.level().isClientSide()) return original;
+        //? if >=1.20.1 {
+        /*if (player.level().isClientSide()) return original;*/
+        //?} else {
+        if (player.getLevel().isClientSide()) return original;
+        //?}
         return original * TPSCalculator.MAX_TPS / (float) TT20.TPS_CALCULATOR.getMostAccurateTPS();
     }
 }
