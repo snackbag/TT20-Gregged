@@ -27,10 +27,10 @@ public class MainCommand {
 
         TT20.config.reload();
         //? if >=1.20.1 {
-        /*source.sendSuccess(() -> Component.literal("Reloaded config"), false);*/
+        source.sendSuccess(() -> Component.literal("Reloaded config"), false);
         //?} else {
-        source.sendSuccess(Component.literal("Reloaded config"), false);
-        //?}
+        /*source.sendSuccess(Component.literal("Reloaded config"), false);
+        *///?}
         return 1;
     }
 
@@ -44,30 +44,30 @@ public class MainCommand {
     private static int executeTps(CommandContext<CommandSourceStack> ctx, boolean missedTicks) {
         CommandSourceStack source = ctx.getSource();
         //? if >=1.20.1 {
-        /*source.sendSuccess(() -> Component.literal(
-                "§7TPS " + TPSUtil.colorizeTPS(TT20.TPS_CALCULATOR.getTPS(), true) +
-                        "§7 with average " + TPSUtil.colorizeTPS(TT20.TPS_CALCULATOR.getAverageTPS(), true) +
-                        "§7 accurate " + TPSUtil.colorizeTPS(TT20.TPS_CALCULATOR.getMostAccurateTPS(), true)
-        ), false);*/
-        //?} else {
-        source.sendSuccess(Component.literal(
+        source.sendSuccess(() -> Component.literal(
                 "§7TPS " + TPSUtil.colorizeTPS(TT20.TPS_CALCULATOR.getTPS(), true) +
                         "§7 with average " + TPSUtil.colorizeTPS(TT20.TPS_CALCULATOR.getAverageTPS(), true) +
                         "§7 accurate " + TPSUtil.colorizeTPS(TT20.TPS_CALCULATOR.getMostAccurateTPS(), true)
         ), false);
-        //?}
+        //?} else {
+        /*source.sendSuccess(Component.literal(
+                "§7TPS " + TPSUtil.colorizeTPS(TT20.TPS_CALCULATOR.getTPS(), true) +
+                        "§7 with average " + TPSUtil.colorizeTPS(TT20.TPS_CALCULATOR.getAverageTPS(), true) +
+                        "§7 accurate " + TPSUtil.colorizeTPS(TT20.TPS_CALCULATOR.getMostAccurateTPS(), true)
+        ), false);
+        *///?}
 
 
         if (missedTicks) {
             //? if >=1.20.1 {
-            /*/^source.sendSuccess(() -> Component.literal(
+            source.sendSuccess(() -> Component.literal(
                     "§8Missed ticks: §7" + TPSUtil.formatMissedTicks(TT20.TPS_CALCULATOR.getAllMissedTicks())
             ), false);
-            //?} else {^/
-            source.sendSuccess(Component.literal(
+            //?} else {
+            /*source.sendSuccess(Component.literal(
                     "§8Missed ticks: §7" + TPSUtil.formatMissedTicks(TT20.TPS_CALCULATOR.getAllMissedTicks())
-            ), false);
-            *///?}
+            ), false);*/
+            //?}
         }
 
         return 1;
@@ -76,7 +76,7 @@ public class MainCommand {
     private static int executeStatus(CommandContext<CommandSourceStack> ctx) {
         CommandSourceStack source = ctx.getSource();
         //? if >=1.20.1 {
-        /*source.sendSuccess(() -> Component.literal(
+        source.sendSuccess(() -> Component.literal(
                 "§7TT20 enabled: " + (TT20.config.enabled() ? "§aON" : "§cOFF")
         ), false);
         source.sendSuccess(() -> Component.literal(
@@ -114,9 +114,9 @@ public class MainCommand {
         ), false);
         source.sendSuccess(() -> Component.literal(
                 "§7Server watchdog: " + (TT20.config.serverWatchdog() ? "§aON" : "§cOFF")
-        ), false);*/
+        ), false);
         //?} else {
-        source.sendSuccess(Component.literal(
+        /*source.sendSuccess(Component.literal(
                 "§7TT20 enabled: " + (TT20.config.enabled() ? "§aON" : "§cOFF")
         ), false);
         source.sendSuccess(Component.literal(
@@ -155,12 +155,12 @@ public class MainCommand {
         source.sendSuccess(Component.literal(
                 "§7Server watchdog: " + (TT20.config.serverWatchdog() ? "§aON" : "§cOFF")
         ), false);
-        //?}
+        *///?}
 
         executeTps(ctx, false);
 
         //? if >=1.20.1 {
-        /*source.sendSuccess(() -> Component.literal(
+        source.sendSuccess(() -> Component.literal(
                 "\n§8Version: §7" + TT20.VERSION
         ), false);
         source.sendSuccess(() -> Component.literal(
@@ -171,9 +171,9 @@ public class MainCommand {
         ), false);
         source.sendSuccess(() -> Component.literal(
                 "§8Automatic updater: §7" + (TT20.config.automaticUpdater() ? "§aenabled" : "§cdisabled")
-        ), false);*/
+        ), false);
         //?} else {
-        source.sendSuccess(Component.literal(
+        /*source.sendSuccess(Component.literal(
                 "\n§8Version: §7" + TT20.VERSION
         ), false);
         source.sendSuccess(Component.literal(
@@ -185,7 +185,7 @@ public class MainCommand {
         source.sendSuccess(Component.literal(
                 "§8Automatic updater: §7" + (TT20.config.automaticUpdater() ? "§aenabled" : "§cdisabled")
         ), false);
-        //?}
+        *///?}
 
         return 1;
     }

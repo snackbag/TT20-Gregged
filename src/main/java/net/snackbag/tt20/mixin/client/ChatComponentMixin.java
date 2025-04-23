@@ -2,7 +2,7 @@ package net.snackbag.tt20.mixin.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 //? if >=1.20.1
-/*import net.minecraft.client.gui.GuiGraphics;*/
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.api.distmarker.Dist;
@@ -20,10 +20,12 @@ public abstract class ChatComponentMixin {
     @Shadow
     public abstract void addMessage(Component message);
     @Inject(method = "render", at = @At("HEAD"))
-    //? if >=1.20.1 {
+    //? if >=1.20.6 {
+    private void onPlayerConnectWarn(GuiGraphics context, int currentTick, int mouseX, int mouseY, boolean isChatOpen, CallbackInfo ci) {
+    //?} else if >=1.20.1 {
     /*private void onPlayerConnectWarn(GuiGraphics context, int currentTick, int mouseX, int mouseY, CallbackInfo ci) {*/
     //?} else {
-        private void onPlayerConnectWarn(PoseStack p_93781_, int p_93782_, CallbackInfo ci) {
+        /*private void onPlayerConnectWarn(PoseStack p_93781_, int p_93782_, CallbackInfo ci) {*/
             //?}
 
         if (TT20.warned || !TT20.config.singlePlayerWarning()) return;
