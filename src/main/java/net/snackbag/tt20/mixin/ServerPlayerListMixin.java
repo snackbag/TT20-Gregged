@@ -21,8 +21,8 @@ public class ServerPlayerListMixin {
     //? if >=1.20.6 {
     private void sendPlayerUpdateMessageIfCorrectPermissions(Connection connection, ServerPlayer player, CommonListenerCookie listener, CallbackInfo ci) {
     //?} else {
-    /*private void sendPlayerUpdateMessageIfCorrectPermissions(Connection connection, ServerPlayer player, CallbackInfo ci) {*/
-        //?}
+    /*private void sendPlayerUpdateMessageIfCorrectPermissions(Connection connection, ServerPlayer player, CallbackInfo ci) {
+        *///?}
         if (!TT20.config.automaticUpdater() || !ModUpdater.hasUpdate) return;
 
         if (Objects.requireNonNull(player.getServer()).getPlayerList().isOp(player.getGameProfile())) {
