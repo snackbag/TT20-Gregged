@@ -21,10 +21,10 @@ public abstract class ChatComponentMixin {
     public abstract void addMessage(Component message);
     @Inject(method = "render", at = @At("HEAD"))
     //? if >=1.20.6 {
-    private void onPlayerConnectWarn(GuiGraphics context, int currentTick, int mouseX, int mouseY, boolean isChatOpen, CallbackInfo ci) {
-    //?} else if >=1.20.1 {
-    /*private void onPlayerConnectWarn(GuiGraphics context, int currentTick, int mouseX, int mouseY, CallbackInfo ci) {
-    *///?} else {
+    /*private void onPlayerConnectWarn(GuiGraphics context, int currentTick, int mouseX, int mouseY, boolean isChatOpen, CallbackInfo ci) {
+    *///?} else if >=1.20.1 {
+    private void onPlayerConnectWarn(GuiGraphics context, int currentTick, int mouseX, int mouseY, CallbackInfo ci) {
+    //?} else {
         /*private void onPlayerConnectWarn(PoseStack p_93781_, int p_93782_, CallbackInfo ci) {*/
             //?}
 
