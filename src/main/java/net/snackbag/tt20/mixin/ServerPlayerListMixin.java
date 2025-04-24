@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Objects;
 
 @Mixin(PlayerList.class)
-public class ServerPlayerListMixin {
+public abstract class ServerPlayerListMixin {
     @Inject(method = "placeNewPlayer", at = @At("TAIL"))
 
     //? if >=1.20.6 {
