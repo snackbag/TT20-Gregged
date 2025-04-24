@@ -20,7 +20,7 @@ public abstract class PlayerMixin {
         //? if >=1.20.1 {
         return entity.level().isClientSide();
         //?} else {
-        /*return entity.getLevel().isClientSide()*/
+        /*return entity.getLevel().isClientSide();*/
         //?}
     }
 
