@@ -3,7 +3,7 @@ package net.snackbag.tt20.mixin;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-//? if >=1.21 {
+//? if >=1.20.6 {
 /*import net.minecraft.server.network.CommonListenerCookie;
 *///?}
 import net.minecraft.server.players.PlayerList;
