@@ -6,7 +6,9 @@
     "DedicatedServerWatchdogMixin",
     "LivingEntityMixin",
     "PlayerMixin",
-    "PortalProcessorMixin",
+    //? if >=1.21 {
+    /*"PortalProcessorMixin",
+    *///?}
     "ServerPlayerListMixin",
     "fluid.LavaFluidMixin",
     "fluid.WaterFluidMixin",
