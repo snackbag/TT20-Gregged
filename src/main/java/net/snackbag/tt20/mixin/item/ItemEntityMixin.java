@@ -17,8 +17,11 @@ public class ItemEntityMixin {
     @Inject(method = "tick", at = @At("HEAD"))
     private void pickupDelayTT20(CallbackInfo ci) {
         if (!TT20.config.enabled() || !TT20.config.pickupAcceleration()) return;
-        if (((Entity)(Object)this).level().isClientSide()) return;
-
+        //? if >=1.20.1 {
+        if (((Entity) (Object) this).level().isClientSide()) return;
+        //?} else {
+        /*if (((Entity) (Object) this).getLevel().isClientSide()) return;
+        *///?}
         if (pickupDelay == 0) return;
 
         if (pickupDelay - TT20.TPS_CALCULATOR.applicableMissedTicks() <= 0) {

@@ -25,7 +25,15 @@ base {
     archivesName = mod_id
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+if (stonecutter.compare(stonecutter.current.version, "1.20.6") >= 0) {
+    java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+} else if (stonecutter.compare(stonecutter.current.version, "1.21") >= 0) {
+    java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+} else if (stonecutter.compare(stonecutter.current.version, "1.21.5") >= 0) {
+    java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+} else {
+    java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+}
 
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 minecraft {
@@ -92,9 +100,7 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
-    implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.4.1")) {
-        jarJar.ranged(it, "[0.4.1,)")
-    }
+    annotationProcessor 'io.github.llamalad7:mixinextras-common:0.4.1'
 
     implementation "net.snackbag.shit:shit:${project.shitlib_version}"
     //include "net.snackbag.shit:shit:${project.shitlib_version}"

@@ -5,9 +5,20 @@ pluginManagement {
             name = 'MinecraftForge'
             url = 'https://maven.minecraftforge.net/'
         }
+        maven { url = "https://maven.kikugie.dev/releases" }
     }
 }
 
 plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '0.7.0'
+    id "dev.kikugie.stonecutter" version "0.4.2"
+}
+
+stonecutter {
+    shared {
+        versions "1.19.2", "1.20.1", "1.20.6", "1.21", "1.21.5"
+        vcsVersion = "1.20.1"
+    }
+
+    create rootProject
 }
