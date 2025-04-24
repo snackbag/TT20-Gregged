@@ -20,6 +20,8 @@ public class TPSCalculator {
 
     }
 
+    /** DIFFERENCE! **/
+    /** New method **/
     @SubscribeEvent
     public void onServerTick(TickEvent.ServerTickEvent event) {
         if (event.phase != TickEvent.Phase.START) return;
@@ -35,6 +37,7 @@ public class TPSCalculator {
         clearMissedTicks();
         recordMissedTicks();
     }
+    /** End of difference **/
 
     private void addToHistory(double tps) {
         if (tpsHistory.size() >= HISTORY_LIMIT) {
