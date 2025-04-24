@@ -6,6 +6,7 @@ import net.minecraft.world.entity.player.Player;
 import net.snackbag.tt20.TT20;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 //? if <=1.21 {
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
@@ -14,6 +15,7 @@ import net.snackbag.tt20.util.TPSUtil;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin {
+    @Unique
     private boolean isClient(Entity entity) {
         //? if >=1.20.1 {
         return entity.level().isClientSide();
