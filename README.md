@@ -1,3 +1,5 @@
+[Looking for Fabric?](https://github.com/snackbag/TT20)
+
 # TT20 Forge
 TT20 helps reduce lag by optimizing how ticks work when the server's TPS is low.
 
