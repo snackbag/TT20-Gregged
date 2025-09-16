@@ -1,3 +1,6 @@
+# copybuilds.sh
+publish-builds
+
 # eclipse
 bin
 *.launch
