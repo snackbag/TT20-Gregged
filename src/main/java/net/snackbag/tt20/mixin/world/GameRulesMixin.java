@@ -10,7 +10,7 @@ import net.snackbag.tt20.util.TPSCalculator;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(GameRules.class)
-public class GameRulesMixin {
+public abstract class GameRulesMixin {
     @ModifyReturnValue(method = "getInt", at = @At("RETURN"))
     private int randomTickSpeedAcceleration(int original, @Local(argsOnly = true) GameRules.Key<GameRules.IntegerValue> rule) {
         if (!TT20.config.enabled() || !TT20.config.randomTickSpeedAcceleration()) return original;

@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(BlockBehaviour.class)
-public class BlockMixin {
+public abstract class BlockMixin {
     @ModifyReturnValue(method = "getDestroyProgress", at = @At("RETURN"))
     private float onDestroyProgress(float original, @Local Player player) {
         if (!TT20.config.enabled() || !TT20.config.blockBreakingAcceleration()) return original;

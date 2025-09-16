@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @OnlyIn(Dist.CLIENT)
 @Mixin(IntegratedServer.class)
-public class IntegratedServerMixin {
+public abstract class IntegratedServerMixin {
     @Inject(method = "stopServer", at = @At("HEAD"))
     private void resetWarn(CallbackInfo ci) {
         TT20.warned = false;
