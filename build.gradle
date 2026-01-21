@@ -70,7 +70,7 @@ repositories {
         url = "https://repo.spongepowered.org/repository/maven-releases"
     }
     maven { url = 'https://repo.spongepowered.org/maven' }
-    maven { url = "https://artifacts.snackbag.net/artifactory/shitlib" } // ShitLib
+    //maven { url = "https://artifacts.snackbag.net/artifactory/shitlib" } // ShitLib
 }
 
 dependencies {
@@ -82,7 +82,7 @@ dependencies {
 //    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
 //    annotationProcessor 'io.github.llamalad7:mixinextras-common:0.4.1'
 
-    implementation "net.snackbag.shit:shit:${project.shitlib_version}"
+    //implementation "net.snackbag.shit:shit:${project.shitlib_version}"
     //include "net.snackbag.shit:shit:${project.shitlib_version}"
 
     //mixins !!
