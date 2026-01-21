@@ -262,8 +262,10 @@ public class JSONConfiguration {
     }
 
     private void collectStringKeys(JsonObject jsonObject, String prefix, Set<String> keys) {
-        for (String key : jsonObject.keySet()) {
-            JsonElement element = jsonObject.get(key);
+        for (Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
+            String key = entry.getKey();
+            JsonElement element = entry.getValue();
+
             String fullKey = prefix.isEmpty() ? key : prefix + "." + key;
 
             if (element.isJsonPrimitive() && element.getAsJsonPrimitive().isString()) {
