@@ -1,0 +1,16 @@
+[
+    {
+        "modid": "tt20",
+        "name": "TT20",
+        "description": "TT20 helps reduce lag by optimizing how ticks work when the server's TPS is low..",
+        "version": "0.7.1",
+        "mcversion": "1.12.2",
+        "url": "",
+        "updateUrl": "",
+        "authorList": ["JX_Snack", "Lemonnik6484"],
+        "credits": "",
+        "logoFile": "assets/tt20/logo.png",
+        "screenshots": [],
+        "dependencies": []
+    }
+]

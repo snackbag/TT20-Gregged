@@ -85,6 +85,8 @@ dependencies {
     //implementation "net.snackbag.shit:shit:${project.shitlib_version}"
     //include "net.snackbag.shit:shit:${project.shitlib_version}"
 
+    compileOnly 'org.jetbrains:annotations:26.0.2-1'
+    
     //mixins !!
     embed('org.spongepowered:mixin:0.8.3-SNAPSHOT') {
         exclude module: 'guava'
