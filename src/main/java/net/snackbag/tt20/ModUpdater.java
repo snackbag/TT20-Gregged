@@ -2,8 +2,8 @@ package net.snackbag.tt20;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import net.snackbag.shit.web.WebRequest;
-import net.snackbag.shit.web.WebResponse;
+import net.snackbag.shit.WebRequest;
+import net.snackbag.shit.WebResponse;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -38,7 +38,7 @@ public class ModUpdater {
             throw new RuntimeException("Failed to GET update info for TT20. URL: " + updateUrl);
         }
 
-        JsonObject body = JsonParser.parseString(resp.content()).getAsJsonObject();
+        JsonObject body = JsonParser.parseString(resp.response()).getAsJsonObject();
 
         boolean status = body.get("status").getAsBoolean();
 

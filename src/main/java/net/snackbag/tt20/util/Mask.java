@@ -1,7 +1,7 @@
 package net.snackbag.tt20.util;
 
 import com.google.gson.JsonElement;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.snackbag.tt20.TT20;
 import net.snackbag.tt20.config.JSONConfiguration;

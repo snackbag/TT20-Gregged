@@ -1,12 +1,13 @@
 package net.snackbag.tt20.config;
 
 import com.google.gson.*;
-import net.minecraftforge.fml.loading.FMLPaths;
+import net.minecraftforge.fml.common.Loader;
 import net.snackbag.tt20.TT20;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class JSONConfiguration {
@@ -257,7 +258,7 @@ public class JSONConfiguration {
     }
 
     public String getAbsolutePath() {
-        return FMLPaths.GAMEDIR.get().resolve(FMLPaths.CONFIGDIR.get()) + "/tt20/";
+        return Paths.get(Loader.instance().getConfigDir().getAbsolutePath(), "tt20").toFile().getAbsolutePath();
     }
 
     private void collectStringKeys(JsonObject jsonObject, String prefix, Set<String> keys) {

@@ -1,7 +1,7 @@
 package net.snackbag.tt20.util;
 
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
