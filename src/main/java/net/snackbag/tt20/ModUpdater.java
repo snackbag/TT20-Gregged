@@ -38,7 +38,7 @@ public class ModUpdater {
             throw new RuntimeException("Failed to GET update info for TT20. URL: " + updateUrl);
         }
 
-        JsonObject body = JsonParser.parseString(resp.response()).getAsJsonObject();
+        JsonObject body = new JsonParser().parse(resp.response()).getAsJsonObject();
 
         boolean status = body.get("status").getAsBoolean();
 
