@@ -1,51 +1,47 @@
 package net.snackbag.tt20.mixin;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.entity.player.EntityPlayer;
 import net.snackbag.tt20.TT20;
-import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-//? if <=1.21 {
-import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.snackbag.tt20.util.TPSUtil;
-//?}
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(Player.class)
+@Mixin(EntityPlayer.class)
 public abstract class PlayerMixin {
-    @Unique
-    private boolean isClient(Entity entity) {
-        //? if >=1.20.1 {
-        return entity.level().isClientSide();
-        //?} else {
-        /*return entity.getLevel().isClientSide();*/
-        //?}
+    @Shadow
+    private int sleepTimer;
+
+    @Inject(
+            method = "getMaxInPortalTime",
+            at = @At("RETURN"),
+            cancellable = true
+    )
+    private void tt20$portalCooldown(CallbackInfoReturnable<Integer> cir) {
+        int original = cir.getReturnValue();
+        System.out.println(original);
+
+        if (!TT20.config.enabled() || !TT20.config.portalAcceleration()) return;
+        if (((EntityPlayer)(Object)this).world.isRemote) return;
+        if (original == 1) return;
+
+        cir.setReturnValue(TPSUtil.tt20(original, false));
     }
 
-    //? if <1.21 {
-    @ModifyReturnValue(method = "getPortalWaitTime", at = @At("RETURN"))
-    private int netherPortalTimeTT20(int original) {
-        if (!TT20.config.enabled() || !TT20.config.portalAcceleration()) return original;
-        if (isClient((Entity) (Object) this)) return original;
-        if (original == 1) return original;
+    @Inject(
+            method = "onLivingUpdate",
+            at = @At("HEAD")
+    )
+    private void tt20$accelerateSleeping(CallbackInfo ci) {
+        EntityPlayer self = (EntityPlayer)(Object)this;
 
-        return TPSUtil.tt20(original, false);
-    }
-    //?}
-    @ModifyExpressionValue(method = "tick", at = @At(value = "FIELD", target = "Lnet/minecraft/world/entity/player/Player;sleepCounter:I", opcode = Opcodes.GETFIELD))
-    private int tickTT20(int original) {
-        if (!TT20.config.enabled() || !TT20.config.sleepingAcceleration()) return original;
-        //? if >=1.20.1 {
-        if (((Entity) (Object) this).level().isClientSide()) return original;
-        //?} else {
-        /*if (((Entity) (Object) this).getLevel().isClientSide()) return original;
-        *///?}
-        /*Player self = (Player)(Object)this;
-        if (self.isSleeping()) {*/
-        return original + TT20.TPS_CALCULATOR.applicableMissedTicks();
-        /*}
-        return original;*/
+        if (!TT20.config.enabled() || !TT20.config.sleepingAcceleration()) return;
+        if (self.world.isRemote) return;
+        if (!self.isPlayerSleeping()) return;
+
+        sleepTimer += TT20.TPS_CALCULATOR.applicableMissedTicks();
     }
 }
