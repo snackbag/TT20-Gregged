@@ -7,18 +7,19 @@ import net.snackbag.tt20.TT20;
 import net.snackbag.tt20.config.JSONConfiguration;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Mask {
     private final JSONConfiguration file;
     private final MaskType maskType;
     private final IForgeRegistry<?> registry;
+    private final RegistryIndex index;
     private final Set<ResourceLocation> entries;
 
     public Mask(IForgeRegistry<?> registry, JSONConfiguration file, String maskKey) {
         this.file = file;
         this.maskType = MaskType.fromString(file.getAsString("type"));
         this.registry = registry;
+        this.index = RegistryIndex.getIndex(this.registry);
         this.entries = new HashSet<>();
 
         for (JsonElement element : file.getAsArray(maskKey)) {
@@ -31,24 +32,36 @@ public class Mask {
         }
     }
 
-    private List<ResourceLocation> manageEntry(String entry) {
+    @SuppressWarnings("ConstantConditions")
+    public List<ResourceLocation> manageEntry(String entry) {
         String[] split = entry.split(":");
 
         if (split.length != 2) {
             TT20.LOGGER.error("(TT20) '" + entry + "' is not a valid identifier. Correct format is <namespace>:<path>");
-            return Collections.emptyList();
+            return new ArrayList<>();
         }
 
-        final String targetNamespace = split[0];
-        final String targetPath = split[1];
+        // *:*
+        if (split[0].equals("*") && split[1].equals("*")) {
+            return index.getIdentifiers();
+        }
 
-        return registry.getEntries().stream()
-                .map(registryEntry -> registryEntry.getKey().location())
-                .filter(location ->
-                        (targetNamespace.equals("*") || location.getNamespace().equals(targetNamespace)) &&
-                                (targetPath.equals("*") || location.getPath().equals(targetPath))
-                )
-                .collect(Collectors.toList());
+        // <namespace>:<path>
+        if (!split[0].equals("*") && !split[1].equals("*")) {
+            return Collections.singletonList(new ResourceLocation(split[0], split[1]));
+        }
+
+        // *:<path>
+        if (split[0].equals("*")) {
+            return index.getPathIndex().getOrDefault(split[1], new ArrayList<>());
+        }
+
+        // <namespace>:*
+        if (split[1].equals("*")) {
+            return index.getNamespaceIndex().getOrDefault(split[0], new ArrayList<>());
+        }
+
+        return new ArrayList<>();
     }
 
     public IForgeRegistry<?> getRegistry() {
@@ -64,6 +77,10 @@ public class Mask {
     }
 
     public boolean isOkay(ResourceLocation identifier) {
-        return (maskType == MaskType.WHITELIST) == entries.contains(identifier);
+        if (maskType == MaskType.WHITELIST) {
+            return entries.contains(identifier);
+        } else {
+            return !entries.contains(identifier);
+        }
     }
 }
