@@ -55,6 +55,7 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
             arg '-torg.spongepowered.asm.launch.MixinTweaker'
+            arg 'nogui'
         }
     }
 }
