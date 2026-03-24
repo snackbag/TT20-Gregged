@@ -147,13 +147,13 @@ publishing {
 sourceSets {
     main {
         output.resourcesDir = output.classesDir
-//        refMap = create_mixin_refmap
+        refMap = "refmap.tt20.json"
     }
 }
 
-//mixin {
-//    config create_mixin_configs
-//}
+mixin {
+    config "mixin.tt20.json"
+}
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
