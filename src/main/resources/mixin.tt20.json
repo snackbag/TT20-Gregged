@@ -16,6 +16,8 @@
     "defaultRequire": 1
   },
   "client": [
+    "client.ChatComponentMixin",
+    "client.IntegratedServerMixin"
   ],
   "server": [
     "DedicatedServerWatchdogMixin"
