@@ -4,24 +4,12 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "refmap.tt20.json",
   "mixins": [
-    "DedicatedServerWatchdogMixin",
-    "LivingEntityMixin",
     "PlayerMixin",
-    "ServerPlayerListMixin",
-    "fluid.LavaFluidMixin",
-    "fluid.WaterFluidMixin",
-    "item.ItemEntityMixin",
-    "item.ItemMixin",
-    "world.BlockMixin",
-    "world.GameRulesMixin",
-    "world.LevelChunkMixin",
-    "world.ServerLevelMixin"
+    "item.ItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
-    "client.ChatComponentMixin",
-    "client.IntegratedServerMixin"
   ]
 }
