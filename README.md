@@ -3,7 +3,7 @@
 
 # TT20 Gregged
 
-This is a port of the TT20 Forge version for 1.12.2, and in the future 1.7.10 + 1.8.9.\
+This is a port of the TT20 Forge version for 1.12.2, and in the future 1.10.2 + 1.7.10 + 1.8.9 + 1.6.4.\
 TT20 helps reduce lag by optimizing how ticks work when the server's TPS is low.
 
 **THIS VERSION MAY INHABIT UNEXPECTED BEHAVIOUR!** I have never developed for 1.12.2, so be very critical of my code.
@@ -21,18 +21,16 @@ maximum TPS). This ensures that the end user feels almost no lag, even if the TP
 
 ## Roadmap
 
-- [X] Block break delay
-- [X] Eating delay
-- [X] Item pickup delay
-- [X] Block entity tick acceleration (experimental)
-- [ ] Entity death animation(?)
-- [ ] Block state delay
+- [ ] Block break delay
+- [ ] Eating delay
+- [ ] Item pickup delay
+- [ ] Block entity tick acceleration (experimental)
 - [X] Portal delay
 - [X] Sleeping delay
-- [X] Potion delay
-- [X] Fluid spread speed
-- [X] Random tickspeed acceleration
-- [X] Time acceleration
+- [ ] Potion delay
+- [ ] Fluid spread speed
+- [ ] Random tickspeed acceleration
+- [ ] Time acceleration
 
 If you believe there is features missing, please tell us by creating a new issue (yes, also if you want compatibility
 with other mods!)
