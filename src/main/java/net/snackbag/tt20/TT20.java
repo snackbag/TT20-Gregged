@@ -17,10 +17,11 @@ import java.util.concurrent.CompletableFuture;
 public class TT20 {
     public static final String MODID = "tt20";
     public static final Logger LOGGER = LogManager.getLogger(MODID);
-    public static final String VERSION = "0.7.1";
     public static final TPSCalculator TPS_CALCULATOR = new TPSCalculator();
 
     public static boolean warned = false;
+    public static final int PATCH = 0;
+    public static final String VERSION = "G122-0.7.2";
 
     public static final MainConfig config = new MainConfig();
     public static final BlockEntityMaskConfig blockEntityMaskConfig = new BlockEntityMaskConfig();

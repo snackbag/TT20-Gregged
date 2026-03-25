@@ -3,7 +3,7 @@
         "modid": "tt20",
         "name": "TT20",
         "description": "TT20 helps reduce lag by optimizing how ticks work when the server's TPS is low..",
-        "version": "0.7.1",
+        "version": "G122-0.7.2",
         "mcversion": "1.12.2",
         "url": "",
         "updateUrl": "",

@@ -95,7 +95,7 @@ public class MainCommand extends CommandBase {
         sender.sendMessage(new TextComponentString("§7Singleplayer warning: " + (TT20.config.singlePlayerWarning() ? "§aON" : "§cOFF")));
         sender.sendMessage(new TextComponentString("§7Server watchdog: " + (TT20.config.serverWatchdog() ? "§aON" : "§cOFF")));
         executeTps(sender, false);
-        sender.sendMessage(new TextComponentString("\n§8Version: §7" + TT20.VERSION));
+        sender.sendMessage(new TextComponentString("\n§8Version: §7" + TT20.VERSION + " §8(§7" + TT20.PATCH + "§8)"));
         sender.sendMessage(new TextComponentString("§8MSPT: §7" + TT20.TPS_CALCULATOR.getMSPT()));
         sender.sendMessage(new TextComponentString("§8Missed ticks: §7" + TPSUtil.formatMissedTicks(TT20.TPS_CALCULATOR.getAllMissedTicks())));
         sender.sendMessage(new TextComponentString("§8Automatic updater: §7" + (TT20.config.automaticUpdater() ? "§aenabled" : "§cdisabled")));
