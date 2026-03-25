@@ -1,5 +1,4 @@
-[Looking for modern Forge?](https://github.com/snackbag/TT20-Forged)\
-[Looking for Fabric?](https://github.com/snackbag/TT20)
+[Looking for TT20 1.19.2+?](https://github.com/snackbag/TT20)
 
 # TT20 Gregged
 
