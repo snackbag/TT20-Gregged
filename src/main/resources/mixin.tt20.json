@@ -5,7 +5,8 @@
   "refmap": "refmap.tt20.json",
   "mixins": [
     "PlayerMixin",
-    "item.ItemMixin"
+    "item.ItemMixin",
+    "world.BlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1

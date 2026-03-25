@@ -21,7 +21,7 @@ maximum TPS). This ensures that the end user feels almost no lag, even if the TP
 
 ## Roadmap
 
-- [ ] Block break delay
+- [X] Block break delay
 - [X] Eating delay
 - [ ] Item pickup delay
 - [ ] Block entity tick acceleration (experimental)

@@ -1,24 +1,23 @@
 package net.snackbag.tt20.mixin.world;
 
-import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.snackbag.tt20.TT20;
 import net.snackbag.tt20.util.TPSCalculator;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(BlockBehaviour.class)
+@Mixin(Block.class)
 public abstract class BlockMixin {
-    @ModifyReturnValue(method = "getDestroyProgress", at = @At("RETURN"))
-    private float onDestroyProgress(float original, @Local Player player) {
-        if (!TT20.config.enabled() || !TT20.config.blockBreakingAcceleration()) return original;
-        //? if >=1.20.1 {
-        if (player.level().isClientSide()) return original;
-        //?} else {
-        /*if (player.getLevel().isClientSide()) return original;
-        *///?}
-        return original * TPSCalculator.MAX_TPS / (float) TT20.TPS_CALCULATOR.getMostAccurateTPS();
+    @Inject(method = "getPlayerRelativeBlockHardness", at = @At("RETURN"), cancellable = true)
+    private void onDestroyProgress(IBlockState state, EntityPlayer player, World worldIn, BlockPos pos, CallbackInfoReturnable<Float> cir) {
+        if (!TT20.config.enabled() || !TT20.config.blockBreakingAcceleration()) return;
+        if (player.world.isRemote) return;
+        cir.setReturnValue(cir.getReturnValueF() * TPSCalculator.MAX_TPS / (float) TT20.TPS_CALCULATOR.getMostAccurateTPS());
     }
 }
