@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.concurrent.CompletableFuture;
 
-@Mod(modid = TT20.MODID)
+@Mod(modid = TT20.MODID, serverSideOnly = true, acceptableRemoteVersions = "*")
 public class TT20 {
     public static final String MODID = "tt20";
     public static final Logger LOGGER = LogManager.getLogger(MODID);
