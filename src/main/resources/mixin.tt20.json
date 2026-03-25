@@ -8,6 +8,7 @@
     "item.ItemEntityMixin",
     "item.ItemMixin",
     "world.BlockMixin",
+    "world.GameRulesMixin",
     "world.ServerLevelMixin"
   ],
   "injectors": {

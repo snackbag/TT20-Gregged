@@ -29,7 +29,7 @@ maximum TPS). This ensures that the end user feels almost no lag, even if the TP
 - [X] Sleeping delay
 - [ ] Potion delay
 - [ ] Fluid spread speed
-- [ ] Random tickspeed acceleration
+- [X] Random tickspeed acceleration
 - [X] Time acceleration
 
 If you believe there is features missing, please tell us by creating a new issue (yes, also if you want compatibility
