@@ -24,11 +24,11 @@ maximum TPS). This ensures that the end user feels almost no lag, even if the TP
 - [X] Block break delay
 - [X] Eating delay
 - [X] Item pickup delay
-- [ ] Block entity tick acceleration (experimental)
+- [ ] Block entity tick acceleration (heeeeeelp)
 - [X] Portal delay
 - [X] Sleeping delay
 - [X] Potion delay
-- [ ] Fluid spread speed
+- [ ] Fluid spread speed (No idea how to implement this properly yet)
 - [X] Random tickspeed acceleration
 - [X] Time acceleration
 
