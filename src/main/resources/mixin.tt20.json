@@ -6,7 +6,6 @@
   "mixins": [
     "LivingEntityMixin",
     "PlayerMixin",
-    "ServerPlayerListMixin",
     "item.ItemEntityMixin",
     "item.ItemMixin",
     "world.BlockMixin",
