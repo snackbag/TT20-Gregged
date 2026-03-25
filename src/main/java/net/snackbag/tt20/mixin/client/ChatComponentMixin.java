@@ -1,35 +1,36 @@
 package net.snackbag.tt20.mixin.client;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-//? if >=1.20.1
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.ChatComponent;
-import net.minecraft.network.chat.Component;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.client.gui.GuiNewChat;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.snackbag.tt20.TT20;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@OnlyIn(Dist.CLIENT)
-@Mixin(ChatComponent.class)
+@SideOnly(Side.CLIENT)
+@Mixin(GuiNewChat.class)
 public abstract class ChatComponentMixin {
-    @Shadow
-    public abstract void addMessage(Component message);
-    @Inject(method = "render", at = @At("HEAD"))
-    //? if >=1.20.6 {
-    /*private void onPlayerConnectWarn(GuiGraphics context, int currentTick, int mouseX, int mouseY, boolean isChatOpen, CallbackInfo ci) {
-    *///?} else if >=1.20.1 {
-    private void onPlayerConnectWarn(GuiGraphics context, int currentTick, int mouseX, int mouseY, CallbackInfo ci) {
-    //?} else {
-        /*private void onPlayerConnectWarn(PoseStack p_93781_, int p_93782_, CallbackInfo ci) {*/
-            //?}
 
+    @Shadow
+    public abstract void printChatMessage(ITextComponent component);
+
+    @Inject(method = "drawChat", at = @At("HEAD"))
+    private void onPlayerConnectWarn(int updateCounter, CallbackInfo ci) {
         if (TT20.warned || !TT20.config.singlePlayerWarning()) return;
-        addMessage(Component.literal("§c§lCritical incompatibilities found!\n\n§c§6TT20 §cis not stable on singleplayer and you may find yourself having unwanted side effects. You can disable each feature in the config if it gets too annoying."));
+
+        printChatMessage(new TextComponentString(
+                "Watch out! It seems you are using TT20 on the client or in singleplayer. If you are on a server " +
+                        "with TT20 on the client, you will encounter unwanted side effects. For singleplayer, we are " +
+                        "not sure about stability yet. You can disable this message in the config.\n\n"
+        ));
+
         TT20.warned = true;
     }
 }
