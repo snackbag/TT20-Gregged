@@ -27,7 +27,7 @@ maximum TPS). This ensures that the end user feels almost no lag, even if the TP
 - [ ] Block entity tick acceleration (experimental)
 - [X] Portal delay
 - [X] Sleeping delay
-- [ ] Potion delay
+- [X] Potion delay
 - [ ] Fluid spread speed
 - [X] Random tickspeed acceleration
 - [X] Time acceleration

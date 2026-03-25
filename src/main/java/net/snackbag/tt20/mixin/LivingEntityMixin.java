@@ -1,7 +1,8 @@
 package net.snackbag.tt20.mixin;
 
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.world.World;
 import net.snackbag.tt20.TT20;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -9,22 +10,31 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(LivingEntity.class)
+@Mixin(EntityLivingBase.class)
 public abstract class LivingEntityMixin {
 
     @Shadow
-    protected abstract void tickEffects();
+    protected abstract void updatePotionEffects();
 
-    @Inject(method = "baseTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;tickEffects()V"))
+    @Inject(
+            method = "onEntityUpdate",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/entity/EntityLivingBase;updatePotionEffects()V"
+            )
+    )
     private void fixPotionDelayTick(CallbackInfo ci) {
         if (!TT20.config.enabled() || !TT20.config.potionEffectAcceleration()) return;
-        //? if >=1.20.1 {
-        if (((Entity) (Object) this).level().isClientSide()) return;
-        //?} else {
-        /*if (((Entity) (Object) this).getLevel().isClientSide()) return;
-        *///?}
-        for (int i = 0; i < TT20.TPS_CALCULATOR.applicableMissedTicks(); i++) {
-            tickEffects();
+
+        Entity self = (Entity) (Object) this;
+        World world = self.world;
+
+        if (world.isRemote) return;
+
+        int extraTicks = TT20.TPS_CALCULATOR.applicableMissedTicks();
+
+        for (int i = 0; i < extraTicks; i++) {
+            updatePotionEffects();
         }
     }
 }

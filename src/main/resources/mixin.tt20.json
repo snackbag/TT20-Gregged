@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "refmap.tt20.json",
   "mixins": [
+    "LivingEntityMixin",
     "PlayerMixin",
     "item.ItemEntityMixin",
     "item.ItemMixin",
