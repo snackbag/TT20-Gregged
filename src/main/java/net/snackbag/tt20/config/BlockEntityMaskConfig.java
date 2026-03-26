@@ -1,6 +1,6 @@
 package net.snackbag.tt20.config;
 
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraft.block.Block;
 import net.snackbag.tt20.util.Mask;
 
 public class BlockEntityMaskConfig extends JSONConfiguration {
@@ -28,7 +28,7 @@ public class BlockEntityMaskConfig extends JSONConfiguration {
         super.reload();
 
         if (reloaded) {
-            this.mask = new Mask(ForgeRegistries.BLOCKS, this, "blocks");
+            this.mask = new Mask(Block.blockRegistry, this, "blocks");
         } else {
             reloaded = true;
         }

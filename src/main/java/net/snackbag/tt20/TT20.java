@@ -1,5 +1,7 @@
 package net.snackbag.tt20;
 
+import net.snackbag.tt20.config.BlockEntityMaskConfig;
+import net.snackbag.tt20.config.MainConfig;
 import net.snackbag.tt20.util.TPSCalculator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
