@@ -1,7 +1,6 @@
 package net.snackbag.shit;
 
-import org.jetbrains.annotations.Nullable;
-
+import javax.annotation.Nullable;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

@@ -46,7 +46,7 @@ public class ModUpdater {
             throw new RuntimeException("(TT20) Failed to check for updates, status is false.");
         }
 
-        body = body.get("forge-G122").getAsJsonObject();
+        body = body.get("forge-G710").getAsJsonObject();
 
         int latest = body.get("patch").getAsInt();
         boolean shouldUpdate = checkShouldUpdate(latest);
