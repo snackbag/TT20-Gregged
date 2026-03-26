@@ -1,11 +1,10 @@
 package net.snackbag.tt20.config;
 
 import com.google.gson.*;
-import net.minecraftforge.fml.common.Loader;
+import cpw.mods.fml.common.Loader;
 import net.snackbag.tt20.TT20;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nullable;
 import java.io.*;
 import java.nio.file.Paths;
 import java.util.*;
@@ -112,13 +111,16 @@ public class JSONConfiguration {
         JsonObject current = (JsonObject) values[0];
 
         JsonArray array = new JsonArray();
+
         for (Object object : value) {
-            if (object instanceof String) {
-                array.add((String) object);
+            if (object == null) {
+                array.add(JsonNull.INSTANCE);
+            } else if (object instanceof String) {
+                array.add(new JsonPrimitive((String) object));
             } else if (object instanceof Boolean) {
-                array.add((Boolean) object);
+                array.add(new JsonPrimitive((Boolean) object));
             } else if (object instanceof Number) {
-                array.add((Number) object);
+                array.add(new JsonPrimitive((Number) object));
             } else {
                 throw new IllegalArgumentException("Unsupported object type: " + object.getClass().getName());
             }
@@ -135,7 +137,7 @@ public class JSONConfiguration {
         current.addProperty((String) values[1], value);
     }
 
-    public void putIfEmpty(String key, @NotNull String value) {
+    public void putIfEmpty(String key, String value) {
         Objects.requireNonNull(value);
 
         if (!has(key)) {
@@ -143,7 +145,7 @@ public class JSONConfiguration {
         }
     }
 
-    public void putIfEmpty(String key, @NotNull Object[] value) {
+    public void putIfEmpty(String key, Object[] value) {
         Objects.requireNonNull(value);
 
         if (!has(key)) {
@@ -151,7 +153,7 @@ public class JSONConfiguration {
         }
     }
 
-    public void putIfEmpty(String key, @NotNull Boolean value) {
+    public void putIfEmpty(String key, Boolean value) {
         Objects.requireNonNull(value);
 
         if (!has(key)) {
