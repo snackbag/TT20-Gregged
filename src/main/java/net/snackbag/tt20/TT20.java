@@ -13,7 +13,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
-@Mod(modid = TT20.MODID, version = Tags.VERSION, name = "TT20", acceptedMinecraftVersions = "[1.7.10]")
+@Mod(modid = TT20.MODID, version = Tags.VERSION, name = "TT20", acceptedMinecraftVersions = "[1.7.10]", acceptableRemoteVersions = "*")
 public class TT20 {
     public static final String MODID = "tt20";
     public static final Logger LOGGER = LogManager.getLogger(MODID);
